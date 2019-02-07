@@ -3,11 +3,15 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 public class Main {
+	private static final int MegaBytes = 10241024;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n;
 		System.out.print ("Ingrese el valor de n para generar las matrices: ");
 		n = sc.nextInt();
+		long freeMemory = Runtime.getRuntime().freeMemory()/MegaBytes;
+		long totalMemory = Runtime.getRuntime().totalMemory()/MegaBytes;
+    long maxMemory = Runtime.getRuntime().maxMemory()/MegaBytes;
 		//Creacion de matrices
 		int[][] m1 = new int[n][n];
 		int[][] m2 = new int[n][n];
@@ -22,8 +26,11 @@ public class Main {
 		long timeElapsed = endTime - startTime;
 		//Imprimir(sol, n);
 		System.out.println("Tiempo:"+timeElapsed+" ns (nanoTime)");
-		totalMemory = Runtime.getRuntime().totalMemory() / MegaBytes;
 		sc.close();
+		totalMemory = Runtime.getRuntime().totalMemory() / MegaBytes;
+		maxMemory = Runtime.getRuntime().maxMemory() / MegaBytes;
+		System.out.println("Used Memory in JVM : " + totalMemory);
+		System.out.println("maxMemory in JVM: " + maxMemory);
 	}
 	public static int[][] LlenarMatriz(int[][] mat, int n) {
 		for(int x = 0; x < n; x++) {
