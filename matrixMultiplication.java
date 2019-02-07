@@ -1,25 +1,30 @@
-
+import java.util.concurrent.TimeUnit;
+import static java.time.temporal.ChronoUnit.SECONDS;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 public class Main {
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		int n;
-		System.out.println("Ingrese el valor de n para generar las matrices\n");
-		n = sc.nextInt();		
-		//Creacion de matrices		
+		System.out.print ("Ingrese el valor de n para generar las matrices: ");
+		n = sc.nextInt();
+		//Creacion de matrices
 		int[][] m1 = new int[n][n];
-		int[][] m2 = new int[n][n];		
-		int[][] sol = new int [n][n]; 			
+		int[][] m2 = new int[n][n];
+		int[][] sol = new int [n][n];
 		m1 = LlenarMatriz(m1, n);
-		Imprimir(m1, n);
-		m2 = LlenarMatriz(m2, n);		
-		Imprimir(m2, n);
+		//Imprimir(m1, n);
+		m2 = LlenarMatriz(m2, n);
+		//Imprimir(m2, n);
+		long startTime = System.nanoTime();
 		sol = MultiplicarMatrices(m1, m2, n, sol);
-		Imprimir(sol, n);
+		long endTime = System.nanoTime();
+		long timeElapsed = endTime - startTime;
+		//Imprimir(sol, n);
+		System.out.println("Tiempo:"+timeElapsed+" ns (nanoTime)");
+		totalMemory = Runtime.getRuntime().totalMemory() / MegaBytes;
 		sc.close();
-	}	
+	}
 	public static int[][] LlenarMatriz(int[][] mat, int n) {
 		for(int x = 0; x < n; x++) {
 			for(int y = 0; y < n; y++) {
